@@ -31,6 +31,17 @@ dependencies:
   community_material_icon: ^5.4.55
   carousel_slider: ^3.0.0
   flutter_swiper: ^1.1.6
+  firebase_messaging: ^10.0.1
+  flutter_local_notifications: any
+  firebase_core: ^1.2.1
+  speech_to_text: ^4.2.1
+  avatar_glow: ^1.2.0
+  highlight_text: ^0.7.2
+  sms_autofill: ^2.0.0
+  firebase_auth: any
+  otp_autofill: ^1.0.0
+  flutter_sms: ^2.3.1
+  flutter_app_lock: ^1.5.0
 
 dev_dependencies:
   flutter_test:

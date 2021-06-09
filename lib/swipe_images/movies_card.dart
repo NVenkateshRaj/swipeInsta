@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learnanimation/swipe_images/swipe_image.dart';
+import 'package:learnanimation/model/movise_model.dart';
 typedef void OnPageChangeCallback (int index);
 class MoviesCard extends StatefulWidget {
   final PageController pageController;

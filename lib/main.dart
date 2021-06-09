@@ -1,9 +1,40 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_lock/flutter_app_lock.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:learnanimation/beach/main_screen.dart';
 import 'package:learnanimation/color.dart';
 import 'package:learnanimation/foods.dart';
+import 'package:learnanimation/messgeing.dart';
+import 'package:learnanimation/messege/otp_autofill.dart';
+import 'package:learnanimation/speech_to_text.dart';
 import 'package:learnanimation/swipe_images/swipe_image.dart';
+import 'package:learnanimation/tween/tween_animation.dart';
 
-void main() {
+import 'custom_path/custom_path.dart';
+
+
+final AndroidNotificationChannel androidNotificationChannel=AndroidNotificationChannel("006","Venkat", "Testing Notification",importance: Importance.high,playSound: true);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
+
+
+Future<void> _firebaseMessagingBackgroud(RemoteMessage remoteMessage)async{
+  await Firebase.initializeApp();
+  print("Message id is ${remoteMessage.messageId}");
+}
+
+
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroud);
+
+
+  await flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(androidNotificationChannel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(alert: true,badge: true,sound: true);
   runApp(MyApp());
 }
 
@@ -16,7 +47,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SwipeImage(),
+      home: OTPAutoFill(),
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

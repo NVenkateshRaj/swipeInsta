@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:learnanimation/model/movise_model.dart';
 import 'package:learnanimation/swipe_images/backgroundimage.dart';
 import 'package:learnanimation/swipe_images/movies_card.dart';
 
@@ -21,7 +22,6 @@ class _MyHomePageState extends State<SwipeImage>with SingleTickerProviderStateMi
   @override
   void initState() {
     super.initState();
-
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8);
   }
 
@@ -45,7 +45,6 @@ class _MyHomePageState extends State<SwipeImage>with SingleTickerProviderStateMi
             children: [
               Stack(
                 children: reversedMovieList.map((movie) {
-                  print(movie.index);
                   return BackgroundImageSlide(
                     pageController: _pageController,
                     width: MediaQuery.of(context).size.width,
@@ -95,27 +94,7 @@ class _MyHomePageState extends State<SwipeImage>with SingleTickerProviderStateMi
   }
 
 }
-class Movies{
-  final String imageUrl;
-  final String name;
-  final int index;
-  Movies({this.imageUrl, this.name,this.index});
-}
-List<Movies> movies=[
-  Movies(imageUrl: "assets/images/avenger.png",name: "Avenger",index: 1),
-  Movies(imageUrl: "assets/images/deadpool.png",name: "DeedPool",index: 2),
-  Movies(imageUrl: "assets/images/Interstellar.png",name: "Interstellar",index: 3),
-  Movies(imageUrl: "assets/images/Thor.png",name: "Avatar",index: 4),
-  Movies(imageUrl: "assets/images/wanted.jpeg",name: "Wanted",index: 5),
-];
 
-List<Movies> movies1=[
-  Movies(imageUrl: "assets/images/wanted.jpeg",name: "Wanted",index: 4),
-  Movies(imageUrl: "assets/images/Thor.png",name: "Avatar",index: 3),
-  Movies(imageUrl: "assets/images/Interstellar.png",name: "Interstellar",index: 2),
-  Movies(imageUrl: "assets/images/deadpool.png",name: "DeedPool",index: 1),
-  Movies(imageUrl: "assets/images/avenger.png",name: "Avenger",index: 0),
-];
 
 /*
 

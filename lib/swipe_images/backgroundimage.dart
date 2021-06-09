@@ -41,7 +41,6 @@ double removeIntegerPart(double number) {
 }
 
 Widget viewImage(String imageUrl) {
-    print(imageUrl);
   return Container(
     height: double.infinity,
     color: Colors.white,

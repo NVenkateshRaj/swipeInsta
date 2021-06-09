@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "992488394187",
+    "project_id": "notification-d19f7",
+    "storage_bucket": "notification-d19f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992488394187:android:5e629fdc37bf9751e13a4e",
+        "android_client_info": {
+          "package_name": "tech.vgts.learnanimation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992488394187-0ddc6vk68t7449t2dqq58l8v0fr0p574.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNkekLDDZzLvL3MFZIp9_ieZ9s_fQBpGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992488394187-0ddc6vk68t7449t2dqq58l8v0fr0p574.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
