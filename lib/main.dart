@@ -8,9 +8,17 @@ import 'package:learnanimation/color.dart';
 import 'package:learnanimation/foods.dart';
 import 'package:learnanimation/messgeing.dart';
 import 'package:learnanimation/messege/otp_autofill.dart';
+import 'package:learnanimation/preference_service.dart';
+import 'package:learnanimation/res/style.dart';
+import 'package:learnanimation/router.dart';
 import 'package:learnanimation/speech_to_text.dart';
 import 'package:learnanimation/swipe_images/swipe_image.dart';
+import 'package:learnanimation/tarnsition_provider/initial_screen/initial_screen.dart';
+import 'package:learnanimation/tarnsition_provider/initial_screen/initial_viewmodel.dart';
+import 'package:learnanimation/tarnsition_provider/locator.dart';
+import 'package:learnanimation/tarnsition_provider/navigation_services.dart';
 import 'package:learnanimation/tween/tween_animation.dart';
+import 'package:provider/provider.dart';
 
 import 'custom_path/custom_path.dart';
 
@@ -27,6 +35,7 @@ Future<void> _firebaseMessagingBackgroud(RemoteMessage remoteMessage)async{
 
 
 Future<void> main() async{
+  setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroud);
@@ -39,17 +48,40 @@ Future<void> main() async{
 }
 
 class MyApp extends StatelessWidget {
+
+  final navigationService = locator<NavigationService>();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<PreferenceService>(create: (context) => locator<PreferenceService>().init()),
+      ],
+      child: MaterialApp(
+        title: "Animation",
+        theme: AppStyle.appTheme,
+        initialRoute: '/',
+        debugShowCheckedModeBanner: false,
+        navigatorKey: navigationService.navigatorKey,
+        onGenerateRoute: (settings) => AppRouter.generateRoute(settings),
+        // navigatorObservers: [FirebaseAnalyticsObserver(analytics: analytics)],
       ),
-      home: OTPAutoFill(),
-      //home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   debugShowCheckedModeBanner: false,
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   home: OTPAutoFill(),
+    //   //home: MyHomePage(title: 'Flutter Demo Home Page'),
+    // );
+
+  }
+
+
+  Widget _setupDialogManager(context, widget) {
+    return Container();
   }
 }
 
@@ -74,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColor().backGroundColor,
+        backgroundColor: AppColor.background,
         body: SingleChildScrollView(
           child:Column(
             mainAxisSize: MainAxisSize.min,
